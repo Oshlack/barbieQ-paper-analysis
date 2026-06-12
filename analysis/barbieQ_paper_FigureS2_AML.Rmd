@@ -306,7 +306,7 @@ ggsave(
   width = 12,
   height = 5,
   units = "in", # for Rmd r chunk fig size, unit default to inch
-  dpi = 350
+  dpi = 2000
   )
 ```
 

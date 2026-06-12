@@ -179,7 +179,7 @@ monkeyHSPC <- barbieQ::createBarbieQ(
 monkeyHSPC@metadata$Monkey <- list("Monkey" = "ZG66")
 ```
 
-# Cluster correlating barcodes {.tabset .tabset-fade .tabset-pills}
+# Cluster correlating barcodes
 
 Select "top" barcodes in advance to save the time & space for running `plotBarcodePairCorrelation`.
 
@@ -234,42 +234,7 @@ f2b
 Visualize barcode proportion per sample per cluster.
 
 ```{r}
-flag_cluster_BC <- monkeyHSPC_top@elementMetadata$barcodeCorrelatedCluster$cluster > 0
-
-cluster_BC <- monkeyHSPC_top[flag_cluster_BC,]
-
-cluster_group <- cluster_BC@elementMetadata$barcodeCorrelatedCluster$cluster
-
-cluster_BC_prop <- cluster_BC@assays@data$proportion
-
-## pivot to long
-df_long <- as.data.frame(cluster_BC_prop) %>%
-  rownames_to_column("barcode") %>%
-  pivot_longer(
-    cols = -barcode,
-    names_to = "sample",
-    values_to = "prop"
-  )
-## add group info
-df_long$cluster_group <- paste0("Cluster ", cluster_group[df_long$barcode])
-## order samples
-df_long <- df_long %>%
-  group_by(cluster_group, sample) %>%
-  mutate(sample_mean = mean(prop)) %>%
-  ungroup() %>%
-  group_by(cluster_group) %>%
-  ## reorder samples.
-  mutate(sample = forcats::fct_reorder(sample, prop, .fun = mean)) %>%
-  ungroup()
-## plot
-ggplot(df_long, aes(x = sample, y = prop, group = barcode)) +
-  geom_line(alpha = 0.7, aes(colour = cluster_group)) +
-  geom_point(size = 0.8) +
-  facet_wrap(~ cluster_group, scales = "free_y", ncol = 1) +
-  theme_bw() +
-  theme(
-    axis.text.x = element_text(angle = 45, hjust = 1)
-  ) +
+inspectCorrelatingBarcodesDetailed(monkeyHSPC_top, ncol = 1) +
   labs(
     x = "Sample",
     y = "Barcode proportion"
@@ -313,7 +278,7 @@ monkeyHSPC_merged@metadata$removed_barcodes
 ```
 
 
-# Filter low-count barcodes {.tabset .tabset-fade .tabset-pills}
+# Filter low-count barcodes
 
 Tag top barcodes.
 
@@ -406,7 +371,7 @@ ggsave(
   width = 13,
   height = 12,
   units = "in", # for Rmd r chunk fig size, unit default to inch
-  dpi = 350
+  dpi = 2000
   )
 ```
 

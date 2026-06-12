@@ -563,7 +563,7 @@ load("output/fdr_by_Nbc.rda")
 
 
 ```{r}
-## saving all p.vals from the N=1553 simulation
+## saving all p.vals from the N=1383 (proportionThreshold = 0.95) simulation
 # df_P.Val
 mixture <- tagTopBarcodes(mixture, nSampleThreshold = 8, proportionThreshold = 0.95)
 ## get the subset of barcodes
@@ -765,7 +765,7 @@ f3d
 
 - For diff_prop
 
-```{r}
+```{r, fig.width=5, fig.height=5}
 # plot_fdr_on_quantile(stats_barcodes_all_levels %>% filter(filter_level==0.1), num_quantiles = 4)
 # plot_fdr_on_quantile(stats_barcodes_all_levels %>% filter(filter_level==0.2), num_quantiles = 10)
 # plot_fdr_on_quantile(stats_barcodes_all_levels %>% filter(filter_level==0.3), num_quantiles = 10)
@@ -779,6 +779,8 @@ f3d
 plot_fdr_on_quantile(stats_barcodes_all_levels %>% filter(filter_level==0.95), num_quantiles = 10) + 
   theme_barbieQ() +
   labs(title = "Type I error rate in quanties") -> f3e
+
+f3e
 ```
 
 # TPR
@@ -1138,7 +1140,7 @@ f3i
 
 ## F3F: TPR in quantiles
 
-```{r}
+```{r, fig.width=4, fig.height=5}
 # plot_tpr_on_quantile(test_all_levels %>% filter(filter_level==0.1), num_quantiles = 4)
 # plot_tpr_on_quantile(test_all_levels %>% filter(filter_level==0.2), num_quantiles = 10)
 # plot_tpr_on_quantile(test_all_levels %>% filter(filter_level==0.3), num_quantiles = 10)
@@ -1152,8 +1154,9 @@ f3i
 plot_tpr_on_quantile(test_all_levels %>% filter(filter_level==0.95), num_quantiles = 10) +
   theme_barbieQ() +
   labs(title = "True positive rate in quanties") -> f3f
-```
 
+f3f
+```
 
 ## FS3B: Residual Normality
 
@@ -1478,7 +1481,7 @@ ggsave(
   width = 15,
   height = 20,
   units = "in", # for Rmd r chunk fig size, unit default to inch
-  dpi = 350
+  dpi = 1200
   )
 ```
 
@@ -1511,7 +1514,7 @@ ggsave(
   width = 9,
   height = 16,
   units = "in", # for Rmd r chunk fig size, unit default to inch
-  dpi = 350
+  dpi = 1200
   )
 ```
 

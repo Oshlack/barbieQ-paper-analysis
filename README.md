@@ -22,7 +22,7 @@ Rendered HTML analysis pages are hosted here: http://oshlacklab.com/barbieQ-pape
 
 |**Figure**|**Content** |**Source** |
 |---|------|----|
-|Figure 1 |Package flowchart |output/barbieQ_figure1.drawio.png |
+|Figure 1 |Package flowchart |output/barbieQ_figure1.png |
 |Figure 2 |Preprocessing Monkey HSPC data |docs/barbieQ_paper_Figure2.html |
 |Figure S1 AML |Preprocessing AML data |docs/barbieQ_paper_FigureS1_AML.html|
 |Figure S1 HSPC xeno |Preprocessing HSPC xenograft data |docs/barbieQ_paper_FigureS1_xenoHSPC.html |
